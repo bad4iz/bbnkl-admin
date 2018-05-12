@@ -50,8 +50,7 @@
       </v-btn>
     </v-toolbar>
     <v-content>
-
-      <router-view v-if="this.$store.token"></router-view>
+      <router-view v-if="this.$store.getters.getToken"></router-view>
       <auth v-else></auth>
     </v-content>
     <v-navigation-drawer
@@ -91,7 +90,7 @@
         miniVariant: false,
         right: true,
         rightDrawer: false,
-        title: 'Vuetify.js',
+        title: 'Bbnkl Админ',
       };
     },
     created() {
