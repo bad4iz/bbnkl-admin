@@ -78,7 +78,7 @@
       return {
         cordova: Vue.cordova,
         clipped: false,
-        drawer: true,
+        drawer: false,
         items: [{
           icon: 'bubble_chart',
           title: 'Inspire',
