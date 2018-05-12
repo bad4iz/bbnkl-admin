@@ -45,7 +45,7 @@
       },
     },
     watch: {
-      userName: function (val) {
+      userName(val) {
         this.$store.dispatch('setUserName', val);
       },
     },

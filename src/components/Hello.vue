@@ -28,7 +28,6 @@
     created() {
       // console.log(3333333333);
       this.$store.dispatch('getCams');
-      console.log(this.$store.getters.getCams);
     },
     mounted() {
       const container = document.getElementById('player');
@@ -47,14 +46,13 @@
       });
     },
     computed: {
-      cams: function () {
+      cams() {
         const plist = this.$store.getters.getCams.map(item => ({
           sources: [{
             src: item.attributes.playUrl,
             type: 'application/x-mpegurl',
           }],
         }));
-        console.log(plist);
         window.flowplayer('#jsplaylist', {
           // rtmp: 'rtmp://s3b78u0kbtx79q.cloudfront.net/cfx/st',
           playlist: plist,
