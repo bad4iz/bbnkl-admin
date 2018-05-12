@@ -25,6 +25,13 @@
           if (file.match(/\.(js|css)$/)) { %>
     <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>"><% }}} %>
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="https://releases.flowplayer.org/7.2.6/skin/skin.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <!--<script src="https://releases.flowplayer.org/7.2.6/flowplayer.min.js"></script>-->
+    <script src="https://releases.flowplayer.org/7.2.4/flowplayer.min.js"></script>
+    <script src="https://releases.flowplayer.org/hlsjs/flowplayer.hlsjs.light.min.js"></script>
+
   </head>
   <body>
     <noscript>

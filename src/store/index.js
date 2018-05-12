@@ -8,17 +8,20 @@ Vue.use(Vuex);
 const HTTP = axios.create({
   baseURL: 'https://dev.bbnkl.ru',
   headers: {
-    // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+    // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+    Authorization: `Base ${JSON.parse(localStorage.getItem('token'))}`,
   },
 });
 
+
 const debug = process.env.NODE_ENV !== 'production';
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
     token: JSON.parse(localStorage.getItem('token')) || '',
     username: 'filin49@yandex.com',
     password: '',
+    cams: [],
   },
   getters: {
     getToken(state) {
@@ -29,6 +32,9 @@ export default new Vuex.Store({
     },
     getPassword(state) {
       return state.password;
+    },
+    getCams(state) {
+      return state.cams;
     },
   },
   mutations: {
@@ -61,5 +67,17 @@ export default new Vuex.Store({
     logout({ commit }) {
       commit('delete', { type: 'token' });
     },
+    getCams({ commit }) {
+      HTTP.get('/api/camera')
+        .then((res) => {
+          console.log(res.data.data);
+          commit('set', { type: 'cams', item: res.data.data });
+        })
+        .catch((er) => {
+          console.log(er);
+        });
+    },
   },
 });
+// axios.defaults.headers.common.Authorization = JSON.parse(localStorage.getItem('token'));
+export default store;
