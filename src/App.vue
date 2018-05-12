@@ -22,6 +22,32 @@
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
+
+      <v-footer absolute
+        height="260px">
+        <v-card
+          flat
+          tile
+          class="indigo lighten-1 white--text text-xs-center"
+        >
+          <v-card-text>
+            <v-btn v-if="this.$store.getters.getToken"
+              color="blue-grey"
+              class="white--text"
+              @click="logout"
+            >
+              Logout
+              <v-icon right dark>rowing</v-icon>
+            </v-btn>
+          </v-card-text>
+          <v-card-text class="white--text">
+            i sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+          </v-card-text>
+          <v-card-text class="white--text">
+            &copy;{{ new Date().getFullYear() }} — <strong>bbnkl</strong>
+          </v-card-text>
+        </v-card>
+      </v-footer>
     </v-navigation-drawer>
     <v-toolbar fixed app :clipped-left="clipped">
       <v-toolbar-side-icon @click.stop="drawer = !drawer" light></v-toolbar-side-icon>
@@ -81,11 +107,11 @@
     data() {
       return {
         cordova: Vue.cordova,
-        clipped: false,
+        clipped: true,
         drawer: false,
         items: [{
           icon: 'bubble_chart',
-          title: 'Inspire',
+          title: 'menu item',
         }],
         miniVariant: false,
         right: true,
@@ -123,16 +149,21 @@
         // Handle the back-button event on Android. By default it will exit the app.
         navigator.app.exitApp();
       },
+      logout() {
+        this.drawer = false;
+        this.$store.dispatch('logout');
+      },
     },
   };
 </script>
 
 <style>
-	body {
+  body {
     padding-top: constant(safe-area-inset-top);
     padding-top: env(safe-area-inset-top);
-	}
-  .footer{ /* Apply this to v-bottom-nav if necessary. */
+  }
+
+  .footer { /* Apply this to v-bottom-nav if necessary. */
     margin-bottom: constant(safe-area-inset-bottom);
     margin-bottom: env(safe-area-inset-bottom);
   }

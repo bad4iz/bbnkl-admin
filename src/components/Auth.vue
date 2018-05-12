@@ -31,8 +31,8 @@
     data() {
       return {
         passVisible: true,
-        userName: '',
-        password: '',
+        userName: 'filin49@yandex.com',
+        password: '123456',
       };
     },
     created() {
