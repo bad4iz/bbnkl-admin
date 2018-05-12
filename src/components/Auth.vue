@@ -36,6 +36,7 @@
       };
     },
     created() {
+      this.$store.dispatch('getCams');
     },
     methods: {
       auth() {
