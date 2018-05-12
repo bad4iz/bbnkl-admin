@@ -48,5 +48,9 @@ export default new Vuex.Store({
           console.log(er);
         });
     },
+    setUserName({ commit }, data) {
+      commit('set', { type: 'username', item: data });
+      console.log('setUserName');
+    },
   },
 });
