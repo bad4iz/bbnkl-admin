@@ -126,7 +126,7 @@
       });
     },
     methods: {
-      onDeviceReady: function () {
+      onDeviceReady() {
         // Handle the device ready event.
         this.cordova.on('pause', this.onPause, false);
         this.cordova.on('resume', this.onResume, false);
@@ -136,13 +136,13 @@
       },
       onPause() {
         // Handle the pause lifecycle event.
-        console.log('pause');
+        // console.log('pause');
       },
       onResume() {
         // Handle the resume lifecycle event.
         // SetTimeout required for iOS.
         setTimeout(() => {
-          console.log('resume');
+          // console.log('resume');
         }, 0);
       },
       onBackKeyDown() {

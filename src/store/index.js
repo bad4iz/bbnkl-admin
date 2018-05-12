@@ -58,7 +58,7 @@ const store = new Vuex.Store({
           commit('set', { type: 'token', item: res.data.access_token });
         })
         .catch((er) => {
-          console.log(er);
+          // console.log(er);
         });
     },
     setUserName({ commit }, data) {
@@ -70,11 +70,10 @@ const store = new Vuex.Store({
     getCams({ commit }) {
       HTTP.get('/api/camera')
         .then((res) => {
-          console.log(res.data.data);
           commit('set', { type: 'cams', item: res.data.data });
         })
         .catch((er) => {
-          console.log(er);
+          // console.log(er);
         });
     },
   },
