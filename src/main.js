@@ -8,6 +8,7 @@ import VueHead from 'vue-head';
 
 import App from './App';
 import router from './router';
+import store from './store';
 
 Vue.use(Vuetify);
 Vue.config.productionTip = false;
@@ -26,6 +27,7 @@ if (window.location.protocol === 'file:' || window.location.port === '3000') {
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App },
   head: {
