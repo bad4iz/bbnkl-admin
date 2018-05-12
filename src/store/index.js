@@ -18,7 +18,7 @@ export default new Vuex.Store({
   state: {
     token: JSON.parse(localStorage.getItem('token')) || '',
     username: 'filin49@yandex.com',
-    password: '123456',
+    password: '',
   },
   getters: {
     getToken(state) {
@@ -38,11 +38,13 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    auth({ commit }, data) {
-      HTTP.post('/auth/login', data)
+    auth({ commit }, password) {
+      const formData = new FormData();
+      formData.append('username', this.getters.getUserName);
+      formData.append('password', password);
+      HTTP.post('/auth/login', formData)
         .then((res) => {
-          console.log(res);
-          commit('set', { type: 'services', item: res.data });
+          commit('set', { type: 'token', item: res.data.access_token });
         })
         .catch((er) => {
           console.log(er);
@@ -50,7 +52,6 @@ export default new Vuex.Store({
     },
     setUserName({ commit }, data) {
       commit('set', { type: 'username', item: data });
-      console.log('setUserName');
     },
   },
 });
