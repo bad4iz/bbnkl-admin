@@ -51,13 +51,13 @@
     </v-navigation-drawer>
     <v-toolbar fixed app :clipped-left="clipped">
       <v-toolbar-side-icon @click.stop="drawer = !drawer" light></v-toolbar-side-icon>
-      <v-btn
-        icon
-        light
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
-      </v-btn>
+      <!--<v-btn-->
+        <!--icon-->
+        <!--light-->
+        <!--@click.stop="miniVariant = !miniVariant"-->
+      <!--&gt;-->
+        <!--<v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>-->
+      <!--</v-btn>-->
       <v-btn
         icon
         light
