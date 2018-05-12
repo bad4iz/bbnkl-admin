@@ -50,7 +50,8 @@
       </v-btn>
     </v-toolbar>
     <v-content>
-      <router-view></router-view>
+      <router-view v-if="this.$store.getters.getToken"></router-view>
+      <auth v-else></auth>
     </v-content>
     <v-navigation-drawer
       temporary
@@ -72,8 +73,11 @@
 
 <script>
   import Vue from 'vue';
+  import Auth from './components/Auth';
 
   export default {
+    template: '<Auth/>',
+    components: { Auth },
     data() {
       return {
         cordova: Vue.cordova,
@@ -86,7 +90,7 @@
         miniVariant: false,
         right: true,
         rightDrawer: false,
-        title: 'Vuetify.js',
+        title: 'Bbnkl Админ',
       };
     },
     created() {
