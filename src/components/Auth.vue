@@ -21,7 +21,7 @@
             class="input-group"
           ></v-text-field>
         </v-form>
-
+        <v-btn color="success" @click="auth">Войти</v-btn>
       </v-layout>
     </v-slide-y-transition>
   </v-container>
@@ -30,7 +30,7 @@
   export default {
     data() {
       return {
-        passVisible: false,
+        passVisible: true,
         userName: '',
         password: '',
       };
@@ -40,7 +40,7 @@
     methods: {
       auth() {
         // Handle the back-button event on Android. By default it will exit the app.
-        navigator.app.exitApp();
+        this.$store.dispatch('auth', this.password);
       },
     },
     watch: {
