@@ -36,6 +36,11 @@ export default new Vuex.Store({
       localStorage.setItem(type, JSON.stringify(item));
       state[type] = item;
     },
+    delete(state, { type }) {
+      // localStorage.setItem(type, JSON.stringify(item));
+      localStorage.clear();
+      state[type] = null;
+    },
   },
   actions: {
     auth({ commit }, password) {
@@ -52,6 +57,9 @@ export default new Vuex.Store({
     },
     setUserName({ commit }, data) {
       commit('set', { type: 'username', item: data });
+    },
+    logout({ commit }) {
+      commit('delete', { type: 'token' });
     },
   },
 });
