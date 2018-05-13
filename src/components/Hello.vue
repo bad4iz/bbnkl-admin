@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-slide-y-transition mode="out-in">
       <v-layout column align-center>
-        <img src="../../static/img/bbnkl-logo2.png" alt="Vuetify.js" class="mb-5">
+        <img src="../../static/img/bbnkl-logo2.png" alt="бебинокль" class="mb-5">
       </v-layout>
     </v-slide-y-transition>
     <!--<div id="player"></div>-->

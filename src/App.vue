@@ -8,18 +8,35 @@
       app
     >
       <v-toolbar flat>
-        <v-list>
-          <v-list-tile>
-            <v-list-tile-title class="title">
-              {{ userStatus.email }}
-            </v-list-tile-title>
-          </v-list-tile>
+        <!--<v-list>-->
+          <!--<v-list-tile>-->
+            <!--<v-list-tile-title class="title">-->
+              <!--{{ userStatus.email }}-->
+            <!--</v-list-tile-title>-->
+          <!--</v-list-tile>-->
+          <!--<v-list-tile-content>-->
+            <!--<v-list-tile-title v-text="userStatus.balance"></v-list-tile-title>-->
+          <!--</v-list-tile-content>-->
+        <!--</v-list>-->
+        <v-list-tile avatar>
+          <v-list-tile-avatar>
+              <img src="../static/img/bbnkl-logo.png">
+          </v-list-tile-avatar>
           <v-list-tile-content>
-            <v-list-tile-title v-text="userStatus.balance"></v-list-tile-title>
+            <v-list-tile-title>{{ userStatus.email }}</v-list-tile-title>
+            <v-list-tile-sub-title>{{ userStatus.balance }}</v-list-tile-sub-title>
           </v-list-tile-content>
-        </v-list>
+          <!--<v-list-tile-action>-->
+            <!--<v-btn icon ripple>-->
+              <!--<v-icon color="grey lighten-1">info</v-icon>-->
+            <!--</v-btn>-->
+          <!--</v-list-tile-action>-->
+        </v-list-tile>
       </v-toolbar>
 
+
+
+      <v-divider inset></v-divider>
       <v-list>
         <v-list-tile
           value="true"
@@ -122,8 +139,8 @@
     data() {
       return {
         cordova: Vue.cordova,
-        clipped: true,
-        drawer: false,
+        clipped: false,
+        drawer: true,
         items: [{
           icon: 'bubble_chart',
           title: 'menu item',
