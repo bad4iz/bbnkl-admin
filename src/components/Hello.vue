@@ -5,10 +5,8 @@
         <img src="../../static/img/bbnkl-logo2.png" alt="Vuetify.js" class="mb-5">
       </v-layout>
     </v-slide-y-transition>
-      <div id="player"></div>
-
-    {{ cams }}
-    <div  id="jsplaylist">
+    <!--<div id="player"></div>-->
+    <div id="jsplaylist">
       <!-- optional prev/next buttons -->
       <a class="fp-prev"></a>
       <a class="fp-next"></a>
@@ -18,44 +16,37 @@
 </template>
 <script>
   /* eslint-disable no-unused-expressions */
+  import { mapGetters } from 'vuex';
 
   export default {
     data() {
       return {
-        // cams: [],
+        plist: this.cams,
+        info: '',
       };
     },
     created() {
-      // console.log(3333333333);
-      this.$store.dispatch('getCams');
+
     },
     mounted() {
-      const container = document.getElementById('player');
-      // const jsplaylist = document.getElementById('jsplaylist');
-      window.flowplayer(container, {
-        clip: {
-          live: true,
-          ratio: 9 / 16,
-          sources: [
-            {
-              type: 'application/x-mpegurl',
-              src: 'https://lk.bbnkl.ru/cams/CamVideoRecorder/cam000020.stream_aac/playlist.m3u8',
-            },
-          ],
-        },
-      });
     },
     computed: {
-      cams() {
-        const plist = this.$store.getters.getCams.map(item => ({
-          sources: [{
-            src: item.attributes.playUrl,
-            type: 'application/x-mpegurl',
-          }],
-        }));
+      // примешиваем геттеры в вычисляемые свойства оператором расширения
+      ...mapGetters({
+        // проксируем `this.cams` в `store.getters.getCams`
+        cams: 'getCams',
+        // ...
+      }),
+    },
+    watch: {
+      cams(val) {
         window.flowplayer('#jsplaylist', {
-          // rtmp: 'rtmp://s3b78u0kbtx79q.cloudfront.net/cfx/st',
-          playlist: plist,
+          playlist: val.map(item => ({
+            sources: [{
+              type: 'application/x-mpegurl',
+              src: item.attributes.playUrl,
+            }],
+          })),
         });
       },
     },

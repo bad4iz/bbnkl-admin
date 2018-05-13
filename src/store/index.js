@@ -68,6 +68,7 @@ const store = new Vuex.Store({
       commit('delete', { type: 'token' });
     },
     getCams({ commit }) {
+      console.log('getCams');
       HTTP.get('/api/camera')
         .then((res) => {
           commit('set', { type: 'cams', item: res.data.data });
