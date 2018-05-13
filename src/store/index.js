@@ -9,10 +9,12 @@ const HTTP = axios.create({
   baseURL: 'https://dev.bbnkl.ru',
   headers: {
     // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-    Authorization: `Base ${JSON.parse(localStorage.getItem('token'))}`,
   },
 });
 
+if (JSON.parse(localStorage.getItem('token'))) {
+  axios.defaults.headers.common.authorization = `Base ${JSON.parse(localStorage.getItem('token'))}`;
+}
 
 const debug = process.env.NODE_ENV !== 'production';
 
@@ -47,6 +49,11 @@ const store = new Vuex.Store({
       localStorage.setItem(type, JSON.stringify(item));
       state[type] = item;
     },
+    setToken(state, { type, item }) {
+      localStorage.setItem(type, JSON.stringify(item));
+      state[type] = item;
+      axios.defaults.headers.common.authorization = `base ${item}`;
+    },
     delete(state, { type }) {
       // localStorage.setItem(type, JSON.stringify(item));
       localStorage.clear();
@@ -63,7 +70,7 @@ const store = new Vuex.Store({
       formData.append('password', password);
       HTTP.post('/auth/login', formData)
         .then((res) => {
-          commit('set', { type: 'token', item: res.data.access_token });
+          commit('setToken', { type: 'token', item: res.data.access_token });
         })
         .catch((er) => {
           // console.log(er);

@@ -36,7 +36,7 @@
       };
     },
     created() {
-      this.$store.dispatch('getCams');
+      // this.$store.dispatch('getCams');
     },
     methods: {
       auth() {

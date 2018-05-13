@@ -1,6 +1,6 @@
 <template>
   <v-app light>
-    <naw-drawer></naw-drawer>
+    <naw-drawer v-if="this.$store.getters.getToken"></naw-drawer>
     <v-toolbar fixed app >
       <v-toolbar-side-icon @click.stop="$store.commit('drawer')" light></v-toolbar-side-icon>
       <!--<v-btn-->
@@ -77,8 +77,8 @@
       };
     },
     created() {
-      this.$store.dispatch('getCams');
-      this.$store.dispatch('userStatus');
+      // this.$store.dispatch('getCams');
+      // this.$store.dispatch('userStatus');
       const self = this;
       this.cordova.on('deviceready', () => {
         self.onDeviceReady();

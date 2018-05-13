@@ -26,7 +26,7 @@
       };
     },
     created() {
-
+      this.$store.dispatch('getCams');
     },
     mounted() {
     },

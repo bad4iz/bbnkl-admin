@@ -92,6 +92,9 @@
         }],
       };
     },
+    created() {
+      this.$store.dispatch('userStatus');
+    },
     methods: {
       logout() {
         this.drawer = false;
