@@ -23,6 +23,7 @@ const store = new Vuex.Store({
     password: '',
     cams: [],
     userStatus: {},
+    drawer: true,
   },
   getters: {
     getToken(state) {
@@ -50,6 +51,9 @@ const store = new Vuex.Store({
       // localStorage.setItem(type, JSON.stringify(item));
       localStorage.clear();
       state[type] = null;
+    },
+    drawer(state) {
+      state.drawer = !state.drawer;
     },
   },
   actions: {
@@ -83,7 +87,7 @@ const store = new Vuex.Store({
     userStatus({ commit }) {
       HTTP.get('/api/userstatus')
         .then((res) => {
-          console.log(res.data.data);
+          // console.log(res.data.data);
           commit('set', { type: 'userStatus', item: res.data.data });
         })
         .catch((er) => {
