@@ -120,6 +120,7 @@
       };
     },
     created() {
+      this.$store.dispatch('getCams');
       const self = this;
       this.cordova.on('deviceready', () => {
         self.onDeviceReady();
