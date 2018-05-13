@@ -7,6 +7,19 @@
       v-model="drawer"
       app
     >
+      <v-toolbar flat>
+        <v-list>
+          <v-list-tile>
+            <v-list-tile-title class="title">
+              {{ userStatus.email }}
+            </v-list-tile-title>
+          </v-list-tile>
+          <v-list-tile-content>
+            <v-list-tile-title v-text="userStatus.balance"></v-list-tile-title>
+          </v-list-tile-content>
+        </v-list>
+      </v-toolbar>
+
       <v-list>
         <v-list-tile
           value="true"
@@ -24,7 +37,7 @@
       </v-list>
 
       <v-footer absolute
-        height="260px">
+                height="260px">
         <v-card
           flat
           tile
@@ -32,16 +45,17 @@
         >
           <v-card-text>
             <v-btn v-if="this.$store.getters.getToken"
-              color="blue-grey"
-              class="white--text"
-              @click="logout"
+                   color="blue-grey"
+                   class="white--text"
+                   @click="logout"
             >
               Logout
               <v-icon right dark>rowing</v-icon>
             </v-btn>
           </v-card-text>
           <v-card-text class="white--text">
-            i sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+            i sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et
+            magnis dis parturient montes, nascetur ridiculus mus.
           </v-card-text>
           <v-card-text class="white--text">
             &copy;{{ new Date().getFullYear() }} — <strong>bbnkl</strong>
@@ -52,11 +66,11 @@
     <v-toolbar fixed app :clipped-left="clipped">
       <v-toolbar-side-icon @click.stop="drawer = !drawer" light></v-toolbar-side-icon>
       <!--<v-btn-->
-        <!--icon-->
-        <!--light-->
-        <!--@click.stop="miniVariant = !miniVariant"-->
+      <!--icon-->
+      <!--light-->
+      <!--@click.stop="miniVariant = !miniVariant"-->
       <!--&gt;-->
-        <!--<v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>-->
+      <!--<v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>-->
       <!--</v-btn>-->
       <v-btn
         icon
@@ -98,6 +112,7 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
   import Vue from 'vue';
   import Auth from './components/Auth';
 
@@ -121,6 +136,7 @@
     },
     created() {
       this.$store.dispatch('getCams');
+      this.$store.dispatch('userStatus');
       const self = this;
       this.cordova.on('deviceready', () => {
         self.onDeviceReady();
@@ -154,6 +170,14 @@
         this.drawer = false;
         this.$store.dispatch('logout');
       },
+    },
+    computed: {
+      // примешиваем геттеры в вычисляемые свойства оператором расширения
+      ...mapGetters({
+        // проксируем `this.cams` в `store.getters.getCams`
+        userStatus: 'getUserStatus',
+        // ...
+      }),
     },
   };
 </script>

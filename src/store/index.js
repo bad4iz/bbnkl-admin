@@ -22,6 +22,7 @@ const store = new Vuex.Store({
     username: 'filin49@yandex.com',
     password: '',
     cams: [],
+    userStatus: {},
   },
   getters: {
     getToken(state) {
@@ -35,6 +36,9 @@ const store = new Vuex.Store({
     },
     getCams(state) {
       return state.cams;
+    },
+    getUserStatus(state) {
+      return state.userStatus;
     },
   },
   mutations: {
@@ -68,10 +72,19 @@ const store = new Vuex.Store({
       commit('delete', { type: 'token' });
     },
     getCams({ commit }) {
-      console.log('getCams');
       HTTP.get('/api/camera')
         .then((res) => {
           commit('set', { type: 'cams', item: res.data.data });
+        })
+        .catch((er) => {
+          // console.log(er);
+        });
+    },
+    userStatus({ commit }) {
+      HTTP.get('/api/userstatus')
+        .then((res) => {
+          console.log(res.data.data);
+          commit('set', { type: 'userStatus', item: res.data.data });
         })
         .catch((er) => {
           // console.log(er);
