@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container fluid class="mya">
     <v-slide-y-transition mode="out-in">
       <v-layout column align-center>
         <img src="../../static/img/bbnkl-logo2.png" alt="Vuetify.js" class="mb-5">
@@ -51,3 +51,7 @@
     },
   };
 </script>
+<style lang="sass" scoped>
+.mya
+  background-color: red
+</style>
